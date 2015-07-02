@@ -8,31 +8,33 @@
 	<link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css'>
 	<script src="./js/battle-music.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="./js/attacks.js"></script>
 	<script src="./js/battle.js"></script>
+
 </head>
 <body>
 
 <section class="info" id="computer">
 	<img class="pokemon" id="cps-pokemon" src="./images/charizard-sprite.gif" alt="cps pokemon">
 	<div class="stats" id="cp-stats">
-		<p id="charz">Computer's Pokemon's Name</p>
-		<p>Computer's Pokemon's Health</p>
+		<p id="cp-pname">Computer's Pokemon's Name</p>
+		<p id="cp-phealth">Computer's Pokemon's Health</p>
 	</div>
 </section>
 
 <section class="info" id="player">
 	<img class="pokemon" id="players-pokemon" src="./images/blastoise-sprite.gif" alt="players pokemon">
 	<div class="stats" id="player-stats">
-		<p>Player's Pokemon's Name</p>
-		<p>Player's Pokemon's Health</p>
+		<p id="player-pname">Player's Pokemon's Name</p>
+		<p id="player-phealth">Player's Pokemon's Health</p>
 	</div>
-	<button type="button" class="unmuted">mute sound</button>
+	<button type="button" class="unmuted">mute bgm</button>
 </section>
 
 	<footer id="battle-menu">
 		<table id="moves">
 			<tr>
-				<td><p class="move1">Move 1</p></td>
+				<td class="move1"><!-- <p class="move1">Move 1</p> --></td>
 				<td>Move 2</td>
 				<td id="pp" rowspan="2"><p>PP</p><p>TYPE</p></td>
 			</tr>

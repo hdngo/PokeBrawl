@@ -15,7 +15,9 @@ $(document).ready(function(){
 		blast.pause();
 		charz.play();
 		//store pokemon selection
-		sessionStorage.setItem("pokemon", "charizard");
+		sessionStorage.setItem("player-pokemon", "charizard");
+		sessionStorage.setItem("cp-pokemon", "blastoise");
+		sessionStorage.setItem("player", "red");
 		//add delay before redirecting
 		window.setTimeout(function(){window.location.assign("./battle.html")}, 3500);
 	})
@@ -24,7 +26,8 @@ $(document).ready(function(){
 		charz.pause();
 		blast.play();
 		//store pokemon selection
-		sessionStorage.setItem("pokemon", "blastoise");
+		sessionStorage.setItem("player-pokemon", "blastoise");
+		sessionStorage.setItem("cp-pokemon", "charizard")
 		//add delay before redirecting
 		window.setTimeout(function(){window.location.assign("./battle.html")}, 3500);
 	});
