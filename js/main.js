@@ -14,10 +14,18 @@ $(document).ready(function(){
 		bgm.pause();
 		blast.pause();
 		charz.play();
+		//store pokemon selection
+		sessionStorage.setItem("pokemon", "charizard");
+		//add delay before redirecting
+		window.setTimeout(function(){window.location.assign("./battle.html")}, 3500);
 	})
 	$('#blastoise').click(function(){
 		bgm.pause();
 		charz.pause();
 		blast.play();
+		//store pokemon selection
+		sessionStorage.setItem("pokemon", "blastoise");
+		//add delay before redirecting
+		window.setTimeout(function(){window.location.assign("./battle.html")}, 3500);
 	});
 });
