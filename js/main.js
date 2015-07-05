@@ -18,6 +18,7 @@ $(document).ready(function(){
 		sessionStorage.setItem("player-pokemon", "charizard");
 		sessionStorage.setItem("cp-pokemon", "blastoise");
 		sessionStorage.setItem("player", "red");
+		sessionStorage.setItem("computer", "blue");
 		//add delay before redirecting
 		window.setTimeout(function(){window.location.assign("./battle.html")}, 3500);
 	})
@@ -28,6 +29,8 @@ $(document).ready(function(){
 		//store pokemon selection
 		sessionStorage.setItem("player-pokemon", "blastoise");
 		sessionStorage.setItem("cp-pokemon", "charizard")
+		sessionStorage.setItem("player", "blue");
+		sessionStorage.setItem("computer", "red");
 		//add delay before redirecting
 		window.setTimeout(function(){window.location.assign("./battle.html")}, 3500);
 	});

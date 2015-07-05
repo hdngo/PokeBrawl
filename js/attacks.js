@@ -4,7 +4,7 @@ var computer;
 
 // Charizard Attack options
 var charizardsAttacks = {
-	flamethrower: flamethrower = {
+	move1: flamethrower = {
  		name: "Flamethrower",
  		attackPower: 90,
 		accuracy: 100,
@@ -12,7 +12,7 @@ var charizardsAttacks = {
 		currentPP: 15,
 		type : "Fire"
 	},
-	seismicToss:seismicToss={
+	move2:seismicToss={
 		name:"Seismic Toss",
 		attackPower: 100,
 		accuracy: 100,
@@ -20,7 +20,7 @@ var charizardsAttacks = {
 		currentPP: 20,
 		type : "Fighting"
 	},
-	earthquake:earthquake={
+	move3:earthquake={
 		name:"Earthquake",
 		attackPower: 100,
 		accuracy: 100,
@@ -28,7 +28,7 @@ var charizardsAttacks = {
 		currentPP: 10,
 		type : "Ground"
 	},
-	fireBlast:fireBlast={
+	move4:fireBlast={
 		name:"Fire Blast",
 		attackPower: 110,
 		accuracy: 85,
@@ -51,14 +51,14 @@ var charizard = {
 
 // Blastoise Attack options
 var blastoisesAttacks = {
-  surf: surf = {
+  move1: surf = {
 		name : "Surf",
 		attackPower: 90,
 		accuracy: 100,
 		maxpowerPoints: 15,
 		currentPP: 15,
 		type : "Water"},
-	megaPunch : megaPunch = {
+	move2: megaPunch = {
 		name : "Mega Punch",
 		attackPower: 80,
 		accuracy : 85,
@@ -66,7 +66,7 @@ var blastoisesAttacks = {
 		currentPP: 20,
 		type : "Normal"
 	},
-	skullBash : skullBash = {
+	move3: skullBash = {
 		name : "Skull Bash",
 		attackPower: 130,
 		accuracy: 100,
@@ -74,7 +74,7 @@ var blastoisesAttacks = {
 		currentPP: 10,
 		type : "Normal"
 	},
-	hydroPump : hydroPump = {
+	move4: hydroPump = {
 		name : "Hydro Pump",
 		attackPower : 110,
 		accuracy : 80,
@@ -98,67 +98,69 @@ var blastoise = {
 
 // battle/damage functions
 
-function hitOrMiss(accuracy){
- var hit = false
- var chance = Math.random() * 100
- if (accuracy == 100 || chance <= accuracy){
- 	hit = true
- }
- return hit
-}
+// function hitOrMiss(accuracy){
+//  var hit = false
+//  var chance = Math.random() * 100
+//  if (accuracy == 100 || chance <= accuracy){
+//  	hit = true
+//  }
+//  return hit
+// }
 
-function effectiveness(attack, targetType){
-	var multiplier = 1
-	if (attack.type == "Water" && targetType == "Fire"){
-		effective = true
-		multiplier = 2
-	}
-	else if (attack.type == "Fire" && targetType == "Water"){
-		multiplier = 0.5
-	}
-	else{
-		multiplier
-	}	
-	return multiplier
-}
+// function effectiveness(attack, targetType){
+// 	var multiplier = 1
+// 	if (attack.type == "Water" && targetType == "Fire"){
+// 		effective = true
+// 		multiplier = 2
+// 	}
+// 	else if (attack.type == "Fire" && targetType == "Water"){
+// 		multiplier = 0.5
+// 	}
+// 	else{
+// 		multiplier
+// 	}	
+// 	return multiplier
+// }
 
 function playerDamageDealt(attack){
-	var damageMultiplier = effectiveness(attack, computer.pokemon.type)
-	var damage = Math.floor(attack.attackPower * (player.pokemon.attack /  computer.pokemon.defense) * damageMultiplier)
+	// var damageMultiplier = effectiveness(attack, computer.pokemon.type)
+	var damage = Math.floor(attack.attackPower) //* (player.pokemon.attack /  computer.pokemon.defense) * damageMultiplier)
 	if (attack.currentPP == 0){
 		console.log("There are no Power Points left for this move!")
 	}
 	else{
 		console.log(computer.name + "'s " + computer.pokemon.name + " received " + damage + " damage!")
-		switch (damageMultiplier){
-			case 2: console.log("It's super effective!")
-				break;
-			case 0.5: console.log("It's not very effective...")
-				break;
+		attack.currentPP --;
+		// switch (damageMultiplier){
+		// 	case 2: console.log("It's super effective!")
+		// 		break;
+		// 	case 0.5: console.log("It's not very effective...")
+		// 		break;
 	}
-	attack.currentPP --;
+	
 	computer.pokemon.currentHealth = computer.pokemon.currentHealth - damage;
 	if (computer.pokemon.currentHealth <= 0){
 		computer.pokemon.currentHealth =0
 	}
 	console.log(computer.pokemon.name + "'s Health: " +computer.pokemon.currentHealth + " / " + computer.pokemon.fullHealth)
 	}
-}
+//}
 
 function computerDamageDealt(attack){
-	var damageMultiplier = effectiveness(attack, player.pokemon.type)
-	var damage = Math.floor(attack.attackPower * (computer.pokemon.attack /  player.pokemon.defense) * damageMultiplier)
+	// var damageMultiplier = effectiveness(attack, player.pokemon.type)
+	var damage = Math.floor(attack.attackPower)// * (computer.pokemon.attack /  player.pokemon.defense) * damageMultiplier)
+	console.log(computer.name + "'s " + computer.pokemon.name + " used " + attack.name + "!")
 	console.log(player.name + "'s " + player.pokemon.name + " received " + damage + " damage!")
 	if (attack.currentPP == 0){
 		console.log("There are no Power Points left for this move!")
 	}
-	else{
-		switch (damageMultiplier){
-			case 2: console.log("It's super effective!")
-				break;
-			case 0.5: console.log("It's not very effective...")
-				break;
-	}
+	// else{
+	// 	switch (damageMultiplier){
+	// 		case 2: console.log("It's super effective!")
+	// 			break;
+	// 		case 0.5: console.log("It's not very effective...")
+	// 			break;
+	// }
 	attack.currentPP --;
 	player.pokemon.currentHealth = player.pokemon.currentHealth - damage;
 	if (player.pokemon.currentHealth <= 0){
@@ -166,7 +168,7 @@ function computerDamageDealt(attack){
 	}
 	console.log(player.pokemon.name + "'s Health: " + player.pokemon.currentHealth + " / " + player.pokemon.fullHealth)
 	}
-}
+// }
 
 function checkFaint(pokemon){
 	var fainted = false
@@ -179,48 +181,52 @@ function checkFaint(pokemon){
 
 function computersMove(){
 	var randomMove = Math.floor(Math.random() * 4)
-	if (computer.name == "Blue"){
+	// if (computer.name == "Blue"){
 		switch (randomMove){
-			case 0: computer.useAttack(surf)
+			case 0: //computer.useAttack(computer.pokemon.attacks.move1)
+				computerDamageDealt(computer.pokemon.attacks.move1)
 			break;
-			case 1: computer.useAttack(megaPunch)
+			case 1: //computer.useAttack(computer.pokemon.attacks.move2)
+				computerDamageDealt(computer.pokemon.attacks.move2)
 			break;
-			case 2: computer.useAttack(skullBash)
+			case 2: //computer.useAttack(computer.pokemon.attacks.move3)
+			computerDamageDealt(computer.pokemon.attacks.move3)
 			break;
-			case 3: computer.useAttack(hydroPump)
+			case 3: //computer.useAttack(computer.pokemon.attacks.move4)
+			computerDamageDealt(computer.pokemon.attacks.move4)
 			break;
 			default: console.log(computer.pokemon.name + " is ignoring " + computer.name + "!");
 		}
-	}
-	else{
-		switch (randomMove){
-			case 0: computer.useAttack(flamethrower)
-			break;
-			case 1: computer.useAttack(seismicToss)
-			break;
-			case 2: computer.useAttack(earthquake)
-			break;
-			case 3: computer.useAttack(fireBlast)
-			break;
-			default: console.log(computer.pokemon.name + " is ignoring " + computer.name + "!");
-		}
-	}
+	// }
+	// else{
+	// 	switch (randomMove){
+	// 		case 0: computer.useAttack(move1)
+	// 		break;
+	// 		case 1: computer.useAttack(move2)
+	// 		break;
+	// 		case 2: computer.useAttack(move3)
+	// 		break;
+	// 		case 3: computer.useAttack(move4s)
+	// 		break;
+	// 		default: console.log(computer.pokemon.name + " is ignoring " + computer.name + "!");
+	// 	}
+	// }
 }
 
-function battleResult(character, opponent){
-	var opponentStatus = checkFaint(opponent.pokemon)
-	var characterStatus = checkFaint(character.pokemon)
-	if (opponentStatus == true){
-		console.log(opponent.name + " was defeated!")
-		character.wins += 1
-		opponent.losses += 1
-	}
-  else if (characterStatus == true){
-  	console.log(character.name + " blacked out!")
-  	character.losses += 1
-  	opponent.wins += 1
-	}
-}
+// function battleResult(character, opponent){
+// 	var opponentStatus = checkFaint(opponent.pokemon)
+// 	var characterStatus = checkFaint(character.pokemon)
+// 	if (opponentStatus == true){
+// 		console.log(opponent.name + " was defeated!")
+// 		character.wins += 1
+// 		opponent.losses += 1
+// 	}
+//   else if (characterStatus == true){
+//   	console.log(character.name + " blacked out!")
+//   	character.losses += 1
+//   	opponent.wins += 1
+// 	}
+// }
 
 // Trainer objects
 
@@ -230,20 +236,24 @@ var red = {
 	wins : 0, losses : 0,
 	useAttack : function(attack){
 		console.log(this.name + "'s " + this.pokemon.name + " used " + attack.name + "!")
-		if (hitOrMiss(attack.accuracy) == true){
+		// if (hitOrMiss(attack.accuracy) == true){
 			if(this == player){
 			playerDamageDealt(attack)
-			battleResult(player, computer)
-			}
-			else{
-				computerDamageDealt(attack)
-				battleResult(computer, player)
-			}
-		}
-		else{
-			console.log(this.pokemon.name + "'s attack missed!")
-			attack.currentPP --
-		}
+			computersMove()
+			// computerDamageDealt(attack)
+			}// battleResult(player, computer)
+			// }
+			// else{
+				
+				// attack.currentPP --;
+			// 	battleResult(computer, player)
+			// }
+		// }
+		// else{
+		// 	console.log(this.pokemon.name + "'s attack missed!")
+			
+		// }
+		
 	}
 }
 
@@ -253,33 +263,34 @@ var blue = {
 	wins : 0, losses : 0,
 	useAttack : function(attack){
 		console.log(this.name + "'s " + this.pokemon.name + " used " + attack.name + "!")
-		if (hitOrMiss(attack.accuracy) == true){
+		// if (hitOrMiss(attack.accuracy) == true){
 			if(this == player){
 			playerDamageDealt(attack)
-			battleResult(player, computer)
+			computerDamageDealt(attack)
+			// battleResult(player, computer)
 			}
 			else{
-			computerDamageDealt(attack)
-			battleResult(computer, player)
+			// computerDamageDealt(attack)
+			// battleResult(computer, player)
 			}
 		}
-		else{
-			console.log(this.pokemon.name + "'s attack missed!")
-			attack.currentPP --
-		}
+		// else{
+		// 	console.log(this.pokemon.name + "'s attack missed!")
+		// 	attack.currentPP --
+		// }
 	}
-}
+//}
 
 //game start and reset functions
-function chooseTeam(team){
-		if (team == red){
-			player = red;
-		computer = blue;
-	}
-	else{
-		player == blue; computer = red;
-	}
-}
+// function chooseTeam(team){
+// 		if (team == red){
+// 			player = red;
+// 		computer = blue;
+// 	}
+// 	else{
+// 		player == blue; computer = red;
+// 	}
+// }
 
 function newGame(){
 	player.pokemon.currentHealth = player.pokemon.fullHealth
@@ -292,10 +303,10 @@ function newGame(){
 	}
 }
 
-function resetScores(){
-	player.wins = 0, player.losses = 0;
-	computer.wins = 0, computer.losses = 0;
-}
+// function resetScores(){
+// 	player.wins = 0, player.losses = 0;
+// 	computer.wins = 0, computer.losses = 0;
+// }
 
 // // Tests
 // chooseTeam(red)
