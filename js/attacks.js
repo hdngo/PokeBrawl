@@ -244,16 +244,13 @@ var red = {
 			}// battleResult(player, computer)
 			// }
 			// else{
-				
 				// attack.currentPP --;
 			// 	battleResult(computer, player)
 			// }
 		// }
 		// else{
 		// 	console.log(this.pokemon.name + "'s attack missed!")
-			
 		// }
-		
 	}
 }
 
@@ -266,19 +263,21 @@ var blue = {
 		// if (hitOrMiss(attack.accuracy) == true){
 			if(this == player){
 			playerDamageDealt(attack)
-			computerDamageDealt(attack)
-			// battleResult(player, computer)
-			}
-			else{
+			computersMove()
 			// computerDamageDealt(attack)
-			// battleResult(computer, player)
-			}
-		}
+			}// battleResult(player, computer)
+			// }
+			// else{
+				// attack.currentPP --;
+			// 	battleResult(computer, player)
+			// }
+		// }
 		// else{
 		// 	console.log(this.pokemon.name + "'s attack missed!")
-		// 	attack.currentPP --
 		// }
+		
 	}
+}
 //}
 
 //game start and reset functions

@@ -28,20 +28,20 @@ $(document).ready(function(){
 	$('#move4').text(playerPokemon.attacks.move4.name);
 
 	//show current move status
-	$('td').hover(function(){
+	var loadMove = function(){
+	// $('td').hover(function(){
 		var currentMove = $(this).attr('id');
 		$('#current-pp').html(playerPokemon.attacks[currentMove].currentPP);
 		$('#max-pp').html(playerPokemon.attacks[currentMove].maxpowerPoints)
 		$('#move-type').text(playerPokemon.attacks[currentMove].type);
-		// var currentMove = null;
-		console.log(playerPokemon.attacks[currentMove].name);
-		console.log(playerPokemon.attacks[currentMove].type);
-		console.log(playerPokemon.attacks[currentMove].currentPP);
-	});
+	}//);
+// };
+$('td').hover(loadMove);
 
-//current problem : after selecting a move, the stats box does not update properly for the next move that is hovered over. 
+//current problem : after selecting a move, the stats box does not update properly for the next move that is hovered over.
+//edit slightly working, not immediately loading attacks on 1st hover
 	
-	$('td').click(function(){
+	$('td').hover(function(){
 	if($(this).hasClass('move')){
 			//To make sure a click only actions once, use unbind()
 			var selectedMove = $(this).attr('id');
@@ -50,14 +50,22 @@ $(document).ready(function(){
 				var update_cp_health = computerPokemon.currentHealth;
 				var update_pp_health = playerPokemon.currentHealth;
 				var pp_move_pp = playerPokemon.attacks[selectedMove].currentPP
+				var pp_move_maxpp = playerPokemon.attacks[selectedMove].maxpowerPoints;
+				var sel_move_type = playerPokemon.attacks[selectedMove].type;
 				$('#player-curHP').text(update_pp_health);
 				$('#cp-curHP').text(update_cp_health);
+				console.log(playerPokemon.attacks[selectedMove].currentPP);
 				$('#current-pp').text(pp_move_pp);
+				$('#max-pp')
+.text(pp_move_maxpp);
+				$('#move-type').text(sel_move_type);
+				$('td').hover(loadMove);
 				// console.log(playerPokemon.attacks[selectedMove].currentPP);
 			});
 		}
 	});
 	// });
+	
 
 	
 	//attack function
