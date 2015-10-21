@@ -1,12 +1,15 @@
 # PokeBrawl
 
+##Screenshots
+![selectscreen](https://github.com/hdngo/PokeBrawl/blob/master/pokebrawl-screenshots/select-screen.png?raw=true)
+![battlescreen](https://github.com/hdngo/PokeBrawl/blob/master/pokebrawl-screenshots/battle-screen.png?raw=true)
+
 ##Description
 PokeBrawl is a miniature Pokemon battle simulator project that I had initially built during the prep phase for Dev Bootcamp. The public interface was implemented 3 weeks after the on-site session at Dev Bootcamp started, and was built using HTML, CSS, and jQuery. 
 
 
 ##Technologies Used
   * Frontend: Javascript (jQuery), HTML, CSS
-
 
 ##User Stories
   * A user can select a Pokemon to battle with.
